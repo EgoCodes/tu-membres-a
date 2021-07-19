@@ -1,0 +1,37 @@
+<%-include('partials/_header');-%>
+    
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-12 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/membresias/update/<%=data.id%>" method="POST">
+                            <div class="form-group">
+                                <p>ACTUALIZAR MEMBRESIA</p>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="nombreMembresia"
+                                    placeholder="Nombre de la membresia" value="<%=data.nombreMembresia%>" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="tipo" placeholder="Tipo de membresia"
+                                    value="<%=data.tipo%>" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="duracion"
+                                    placeholder="Duración de la membresia en dias" value="<%=data.duracion%>" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="precio"
+                                    placeholder="Precio de la membresia" value="<%=data.precio%>" required>
+                            </div>
+                            <input type="hidden" name="idEmpresa" value="<%=data.idEmpresa%>">
+                            <button type="submit" class="btn btn-block btn-primary">Actualizar membresia</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%-include('partials/_footer');-%>

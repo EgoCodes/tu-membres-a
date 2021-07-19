@@ -1,0 +1,41 @@
+<%-include('partials/_header');-%>
+
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-lg-4 col-md-12 mb-2">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/personas/add" method="POST">
+                        <div class="form-group">
+                            <p>REGISTRAR PERSONA</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="nombrePersona" placeholder="Nombre de la persona" required>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-primary">Registrar nueva persona</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-12">
+            <div class="container">
+                <div class="row">
+                <% if (data) { %>
+                    <% for ( var i = 0; i < data.length; i++) {%>
+                        <div class="card col-lg-5 col-md-12  mr-1 mb-1">
+                            <div class="card-body">
+                                <p><%= data[i].nombrePersona %></p>
+                                <a href="/personas/comprar/<%= data[i].id %>" class="btn btn-primary ">Membresias</a>
+                                <a href="/personas/update/<%= data[i].id %>" class="btn btn-info pl-2 pr-2 pb-1"><i class="large material-icons">create</i></a>
+                                <a href="/personas/delete/<%= data[i].id %>" class="btn btn-warning pl-2 pr-2 pb-1"><i class="large material-icons">clear</i></a>
+                            </div>
+                        </div>
+                    <% } %>
+                <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<%-include('partials/_footer');-%>

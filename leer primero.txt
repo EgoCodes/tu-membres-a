@@ -1,0 +1,4 @@
+1. abrir cualquier servidor mysql (XAMPP, WAMP...)
+2. Dentro de la carpeta del proyecto realizar lo siguiente: Ctrl+Shift+click derecho
+3. click en "Abrir la ventana de PowerShell aquí"
+4. Cuando salga la terminal ingresar el siguiente comando: npm run dev para correr el servidor de node js

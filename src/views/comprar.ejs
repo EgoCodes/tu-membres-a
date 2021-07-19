@@ -1,0 +1,76 @@
+<%-include('partials/_header');-%>
+
+<div class="container">
+    <% if (compras.length > 0) { %>
+        <div class="row mt-3">
+            <div class="col-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-active">
+                        <th scope="col">N°</th>
+                        <th scope="col">EMPRESA</th>
+                        <th scope="col">MEMBRESIA</th>
+                        <th scope="col">PRECIO</th>
+                        <th scope="col">TIEMPO RESTANTE</th>
+                        <th scope="col">OPCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (var i = 0; i < compras.length; i++) { %>
+                            <tr class="">
+                                <th scope="col"><%= i+1 %></th>
+                                <th scope="col"><%= compras[i].nombreEmpresa %></th>
+                                <th scope="col"><%= compras[i].nombreMembresia %></th>
+                                <th scope="col">$<%= compras[i].precio %></th>
+                                <th scope="col" id="contador<%= i+1 %>"></th>
+                                <th scope="col">
+                                    <div class="row row-cols-lg-auto g-3 align-items-center">
+                                        <a href="/personas/comprar/update/<%= compras[i].id %>&<%= compras[i].idPersona %>&<%= compras[i].duracion %>" class="btn btn-info ml-2">RENOVAR</i></a>
+                                        <a href="/personas/comprar/delete/<%= compras[i].id %>&<%= compras[i].idPersona %>" class="btn btn-warning ml-2">Cancelar</i></a>
+                                    </div>
+                                </th>
+                                <input type="hidden" id="fecha<%= i+1 %>" value="<%= compras[i].fechaFinMembresia %>">
+                                <% if (compras.length == (1+i)) { %>
+                                    <input type="hidden" id="con" value="<%= compras.length %>">
+                                <% } %>
+                            </tr>
+                            <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <% } %>
+    <% for (var j = 0; j < compras.length; j++) { %>
+        <% for (var i = 0; i < data.length; i++) { %>
+            <% if (compras[j].idMembresia == data[i].id) { %>
+                <% data.splice(i,1) %>
+            <% } %>
+        <% } %>
+    <% } %>
+    <div class="row mt-3">
+        <% if (data) { %>
+            <% for (var i = 0; i < data.length; i++) { %>
+                    <div class="col-lg-3 col-md-4 col-sm-6">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <p class="card-title "><%= data[i].nombreEmpresa %></p>
+                                <hr>
+                                <p class="card-text">Membresia: <%= data[i].nombreMembresia %></p>
+                                <p class="card-text">Tipo: <%= data[i].tipo %></p>
+                                <p class="card-text">Duración: <%= data[i].duracion %> Dias</p>
+                                <p class="card-text">Precio: $<%= data[i].precio %></p>
+                                <form action="/personas/comprar/<%= pers %>" method="post">
+                                    <input type="hidden" name="idMembresia" value="<%=data[i].id %>">
+                                    <input type="hidden" name="idPersona" value="<%=pers %>">
+                                    <input type="hidden" name="fechaFinMembresia" value="<%=data[i].duracion %>">
+                                    <button type="submit" class="btn btn-primary ">Comprar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+            <% } %>
+        <% } %>
+    </div>
+</div>
+
+<%-include('partials/_footer');-%>
